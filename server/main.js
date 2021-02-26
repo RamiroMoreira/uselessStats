@@ -345,7 +345,7 @@ SyncedCron.add({
 				Elo.update({name: singleMatch.players[1][0].name}, {$set: { elo: elo10, played2v2: played10, won2v2: won10, streak2v2: streak2v210, streakAll: streakAll10 }});
 			}
 			else{
-				Elo.insert({name: singleMatch.players[1][0].name, elo: elo10, played: 0, won: 0, played2v2: played10, won2v2: won11, streak: 0, streak2v2: streak2v210, streakAll: streakAll10 })
+				Elo.insert({name: singleMatch.players[1][0].name, elo: elo10, played: 0, won: 0, played2v2: played10, won2v2: won10, streak: 0, streak2v2: streak2v210, streakAll: streakAll10 })
 			}
 			if(eloPlayer11 != null){
 				Elo.update({name: singleMatch.players[1][1].name}, {$set: { elo: elo11, played2v2: played11, won2v2: won11, streak2v2: streak2v211, streakAll: streakAll11 }});
