@@ -36,6 +36,7 @@
  <div>
     <table class="table table-dark table-borderless">
  	<tr>
+    		<th>#</th>
     		<th>Name</th>
     		<th>Elo</th>
     		<th>Played</th>
@@ -51,6 +52,7 @@
 
 <template name="singleElo">
     <tr>
+	<td>{{index}}</td>
 	<td>{{name}}</td>
         <td>{{roundElo elo}}</td>
         <td>{{getPlayed played played2v2}}</td>

@@ -20,7 +20,12 @@ Template.eloList.created = function(){
 } 
 Template.eloList.helpers({
   elos(){
-	return Elo.find({}, {sort: {elo:-1}});	
+	var count = 1;
+	return Elo.find({}, {sort: {elo:-1}, transform:function(doc){
+		doc.index = count;
+		count++;
+		return doc;
+	}});	
   },
   getGameMode(){
 	return gameMode.get();
