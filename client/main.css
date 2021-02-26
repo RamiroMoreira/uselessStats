@@ -1,0 +1,69 @@
+body {
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+.bd-grey-400{
+  background-color: #ced4da !important;
+  color: #000;
+  width: 50px;
+  text-align: center;
+  margin: 1px;	
+}
+
+.bd-green-400{
+  background-color: #479f76 !important;
+  color: #000;
+  width: 50px;
+  text-align: center;
+  margin: 1px;	
+}
+
+.bd-blue-400{
+  background-color: #3d8bfd !important;
+  color: #000;
+  width: 50px;
+  text-align: center;
+  margin: 1px;	
+}
+
+.bd-purple-400{
+  background-color: #8c68cd !important;
+  color: #000;
+  width: 50px;
+  text-align: center;
+  margin: 1px;	
+}
+
+.bd-orange-400{
+  background-color: #fd9843 !important;
+  color: #000;
+  width: 50px;
+  text-align: center;
+  margin: 1px;	
+}
+
+tr{
+  height:40px;	
+}
+
+.blue-400{
+  color: #3d8bfd;
+}
+
+.green-400{
+  color: #479f76;
+}
+
+.grey-400{
+  color: #ced4da;
+}
+
+.purple-400{
+  color: #8c68cd;
+}
+
+.orange-400{
+  color: #fd9843;
+}
+

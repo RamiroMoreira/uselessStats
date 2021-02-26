@@ -1,0 +1,96 @@
+<head>
+  <title>statisticHex</title>
+</head>
+
+<body class="p-3 mb-2 bg-dark text-dark">
+  <div class="container p-3 bg-secondary.bg-gradient text-white">
+	<div class="d-flex flex-row">
+		<div class="col-md-8 p-3 m-3"  style="background-color: #404040">	
+      			{{>eloList}}
+     		</div>
+     	<div class="col-md-4 " >
+		<div class="p-3 m-3" style="background-color: #404040">
+			{{>colorsPie}}
+		</div>
+		<div class="p-3" >
+			{{>maxStreaks}}
+		</div>
+     	</div>	
+  </div>	
+</div>
+</body>
+<template name="eloList">
+ <div class="text-left"><h3>Players Elo</h3></div>
+ <br>
+ <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownGameMode" data-bs-toggle="dropdown" aria-expanded="false">
+    {{getGameMode}}
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownGameMode">
+    <li><a class="dropdown-item" id="gameModeAll" href="#">All</a></li>
+    <li><a class="dropdown-item" id="gameMode1" href="#">1v1</a></li>
+    <li><a class="dropdown-item" id="gameMode2" href="#">2v2</a></li>
+  </ul>
+</div>
+ <br>
+ <div>
+    <table class="table table-dark table-borderless">
+ 	<tr>
+    		<th>Name</th>
+    		<th>Elo</th>
+    		<th>Played</th>
+		<th>WinRate</th>
+		<th>Streak</th>
+  	</tr>
+        {{#each elos}}
+          {{> singleElo}}
+        {{/each}}
+     </table>
+</div>
+</template>
+
+<template name="singleElo">
+    <tr>
+	<td>{{name}}</td>
+        <td>{{roundElo elo}}</td>
+        <td>{{getPlayed played played2v2}}</td>
+	<td>{{getWinRate played played2v2 won won2v2}}</td>
+	<td><label class="{{getStreakClass streak streakAll streak2v2}}">{{getStreak streak streakAll streak2v2}}</label></td>
+    </tr>
+</template>
+
+<template name="colorsPie">
+    <div class="text-left p-3"><h4>Colours WinRate</h4></div>
+    <div id="d3content"></div>
+</template>
+
+<template name="maxStreaks">
+
+	<div class="card text-white mb-3" style="margin: auto; background-color: #404040">
+  	<div class="card-header "><div class=""><i class="fas fa-trophy " style="position:absolute; size: 9px; width: 28px;height: 28px; margin: 2px;"></i></div> <h4 class="text-center">1v1 Record streak</h4></div>
+  	<div class="card-body">
+    		<h1 class="card-title text-center {{getColor streaks.maxStreakValue}}" >{{streaks.maxStreakValue}}</h1>
+    		<p class="card-text text-center">Record achived by <strong>{{streaks.maxStreak}}</strong></p>
+  		</div>
+	</div>
+	<div class="card text-white mb-3" style="margin: auto; background-color: #404040">
+  	<div class="card-header "><div class=""><i class="fas fa-trophy " style="position:absolute; size: 9px; width: 28px;height: 28px; margin: 2px;"></i></div><h4 class="text-center">2v2 Record streak</h4></div>
+  	<div class="card-body">
+    		<h1 class="card-title text-center {{getColor streaks.maxStreak2v2Value}}" >{{streaks.maxStreak2v2Value}}</h1>
+    		<p class="card-text text-center">Record achived by <strong>{{streaks.maxStreak2v2}}</strong></p>
+  		</div>
+	</div>
+	<div class="card text-white mb-3" style="margin: auto; background-color: #404040">
+  	<div class="card-header"><div class=""><i class="fas fa-trophy " style="position:absolute; size: 9px; width: 28px;height: 28px; margin: 2px;"></i></div><h4 class="text-center">Record streak</h4></div>
+  	<div class="card-body">
+    		<h1 class="card-title text-center {{getColor streaks.maxStreakAllValue}}" >{{streaks.maxStreakAllValue}}</h1>
+    		<p class="card-text text-center">Record achived by <strong>{{streaks.maxStreakAll}}</strong></p>
+  		</div>
+	</div>
+	
+	
+
+</template>
+
+
+
