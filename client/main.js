@@ -1,11 +1,11 @@
 import { Template } from 'meteor/templating';
 import { Matches } from '../api/matches';
-import { Elo } from '../api/elo';
 import { Colors } from '../api/colors'; 
-import { Stats } from '../api/stats';       
+import { Stats } from '../api/stats';
+import { Elo } from '../api/elo';        
 import './main.html';
 import bootstrap from 'bootstrap';
-
+import '../api/publications'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'bootstrap/dist/css/bootstrap-utilities.css';
@@ -15,17 +15,19 @@ import '@fortawesome/fontawesome-free/js/all.js';
 
 import d3 from 'd3';
 var gameMode = new ReactiveVar();
+
+//const Elo = new Mongo.Collection('elo');
+var handler;
 Template.eloList.created = function(){
+	handler = Meteor.subscribe('elos');
 	gameMode.set("All")
 } 
 Template.eloList.helpers({
   elos(){
-	var count = 1;
-	return Elo.find({}, {sort: {elo:-1}, transform:function(doc){
-		doc.index = count;
-		count++;
-		return doc;
-	}});	
+	if(handler.ready()){
+		var count = 1;
+		return Elo.find({}, {sort: {elo:-1}});
+	}	
   },
   getGameMode(){
 	return gameMode.get();
@@ -99,6 +101,9 @@ Template.singleElo.helpers({
 	else if(s < 48){
 		return "bd-yellow-400"
 	}
+	else{
+		return "bd-pink-400"
+	}
   },
   getStreak(streak, streakAll, streak2v2){
 	var s = 0;	
@@ -114,7 +119,9 @@ Template.singleElo.helpers({
 	return s;
   }
 })
-
+Template.colorsPie.created = function(){
+	Meteor.subscribe('colors');
+}
 Template.colorsPie.rendered = function(){
 	Deps.autorun(function () {
 
@@ -156,12 +163,15 @@ Template.colorsPie.rendered = function(){
 })
 }
 
+Template.maxStreaks.created = function(){
+	Meteor.subscribe('stats');
+}
+
 Template.maxStreaks.helpers({
   streaks(){
 	return Stats.findOne({});	
   },
   getColor(s){
-	console.log("s" + s)
 	if(s < 3){
 		return "grey-400"
 	}
@@ -176,6 +186,9 @@ Template.maxStreaks.helpers({
 	}
 	else if(s < 48){
 		return "yellow-400"
+	}
+	else{
+		return "pink-400"
 	}
   }
 })

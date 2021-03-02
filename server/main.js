@@ -4,6 +4,7 @@ import { RunningMatches } from '../api/runningMatches.js';
 import { Elo } from '../api/elo.js';
 import { Colors } from '../api/colors.js';
 import { Stats } from '../api/stats.js';
+import '../api/publications.js';
 import { _ } from 'underscore';
 var k = 15;
 

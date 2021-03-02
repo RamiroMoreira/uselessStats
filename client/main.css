@@ -35,8 +35,16 @@ body {
   margin: 1px;	
 }
 
-.bd-orange-400{
+.bd-yellow-400{
   background-color: #fd9843 !important;
+  color: #000;
+  width: 50px;
+  text-align: center;
+  margin: 1px;	
+}
+
+.bd-pink-400{
+  background-color: #de5c9d !important;
   color: #000;
   width: 50px;
   text-align: center;
@@ -63,7 +71,11 @@ tr{
   color: #8c68cd;
 }
 
-.orange-400{
+.yellow-400{
   color: #fd9843;
+}
+
+.pink-400{
+  color: #de5c9d;
 }
 
